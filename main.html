@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Fixtures</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #0e78e9;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upcoming Football Fixtures</h1>
+
+    {% if fixtures %}
+        <ul>
+            {% for fixture in fixtures %}
+                <li>
+                    <a href="{{ url_for('match_details', match_id=fixture.id) }}">
+                        <strong>{{ fixture.homeTeam.name }} vs {{ fixture.awayTeam.name }}</strong><br>
+                        Match Date: {{ fixture.utcDate }}<br>
+                        Status: {{ fixture.status }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming fixtures available or unable to fetch data.</p>
+    {% endif %}
+</body>
+</html>
+
+
+
